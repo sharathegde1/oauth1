@@ -89,9 +89,11 @@ class RequestFactory implements RequestFactoryInterface
             'headers' => [
                 'Authorization' => $this->authorizationHeader->forTokenCredentials($temporaryCredentials, $verificationCode),
             ],
-            'form_params' => [
-                'oauth_verifier' => $verificationCode,
-            ],
+// Commented based on specs at https://devdocs.magento.com/guides/m1x/api/rest/authentication/oauth_authentication.html
+// oauth_verifier not required in form params. Only required in Authorization header.
+//            'form_params' => [
+//                'oauth_verifier' => $verificationCode,
+//            ],
         ]);
     }
 

@@ -125,8 +125,12 @@ class ProtocolParameter implements ProtocolParameterInterface
 
         $parameters['oauth_token'] = $temporaryCredentials->getIdentifier();
 
+        // Added based on specs at https://devdocs.magento.com/guides/m1x/api/rest/authentication/oauth_authentication.html
+        $parameters['oauth_verifier'] = $verificationCode;
+
         $requestOptions = [
-            'form_params' => ['oauth_verifier' => $verificationCode],
+// Commented based on specs at https://devdocs.magento.com/guides/m1x/api/rest/authentication/oauth_authentication.html
+//            'form_params' => ['oauth_verifier' => $verificationCode],
         ];
 
         $parameters['oauth_signature'] = $this->getSignature(
